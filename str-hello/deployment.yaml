@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: str-hello
+  name: str-hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: str-hello
+  template:
+    metadata:
+      labels:
+        app: str-hello
+    spec:
+      containers:
+      - image: docker.io/ausername123/str:0.0.1 # {"$imagepolicy": "default:hello"}
+        name: str-hello
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        livenessProbe:
+          initialDelaySeconds: 2
+          periodSeconds: 2
+          httpGet:
+            port: 80
+            path: /healthz/live
+        readinessProbe:
+          initialDelaySeconds: 2
+          periodSeconds: 2
+          httpGet:
+            port: 80
+            path: /healthz/ready

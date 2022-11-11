@@ -15,7 +15,7 @@ spec:
         app: str-hello
     spec:
       containers:
-      - image: docker.io/ausername123/str:0.0.1 # {"$imagepolicy": "default:hello"}
+      - image: ausername123/str:0.0.1 # {"$imagepolicy": "default:hello"}
         name: str
         imagePullSecrets:
         - name: complex-store-docker-hub-secret

@@ -19,6 +19,7 @@ spec:
       containers:
       - image: ausername123/str:0.0.1 # {"$imagepolicy": "default:hello"}
         name: str
+        imagePullPolicy: Always
         resources: {}
         ports:
         - containerPort: 80

@@ -19,7 +19,6 @@ spec:
       containers:
       - image: ausername123/str:0.0.1 # {"$imagepolicy": "default:hello"}
         name: str
-        
         resources: {}
         ports:
         - containerPort: 80
@@ -29,14 +28,14 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
         livenessProbe:
-          initialDelaySeconds: 2
-          periodSeconds: 2
+          initialDelaySeconds: 3
+          periodSeconds: 3
           httpGet:
-            port: 80
-            path: /healthz/live
+            path: /actuator/health/liveness
+            port: 8080
         readinessProbe:
-          initialDelaySeconds: 2
-          periodSeconds: 2
+          initialDelaySeconds: 3
+          periodSeconds: 3
           httpGet:
-            port: 80
-            path: /healthz/ready≈
+            port: 8080
+            path: /actuator/health/readiness
